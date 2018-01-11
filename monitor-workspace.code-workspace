@@ -1,0 +1,20 @@
+{
+	"folders": [
+		{
+			"path": "agent-command"
+		},
+		{
+			"path": "agent-sql"
+		},
+		{
+			"path": "httpClient-golang"
+		},
+		{
+			"path": "httpClient-java"
+		},
+		{
+			"path": "guide"
+		}
+	],
+	"settings": {}
+}
