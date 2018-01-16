@@ -1,13 +1,16 @@
-### middle 1
+### middle - task register
+- register cron to mysql runtime configure
+- register subscribe to mysql runtime configure
+- kafka topic -> kafka stream -> filter -> kafka stream -> kafka topic
 
-### middle 2
+### middle 2 service dispatcher
 
 ### middle 3
 
 ### kafka
+- per service a kafka topic
 
 #### kafka stream
-  
 
 ### mysql 7 json runtime configure
 - runtime cron table
