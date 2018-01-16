@@ -11,9 +11,9 @@
 
 ### mysql 7 json runtime configure
 - runtime cron table
-  * * * * * 
+  > * * * * * 
 - runtime subscribe table
-  task - endpoint - downstream(event)
+  > task - endpoint - downstream(event)
 
 ### consul
 - service sql
