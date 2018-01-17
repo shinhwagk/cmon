@@ -8,18 +8,34 @@
 ### middle 3
 
 ### kafka
-- per service a kafka topic
+- 'service topic' used for send service queue
 
 #### kafka stream
 
 ### mysql 7 json runtime configure
 - runtime cron table
-```txt
-* * * * * 
+```sql
+CREATE TABLE runtime_xxx(
+  task_name VARCHAR,
+  step_name VARCHAR,
+  service_name VARCHAR,
+  endpoint JSON,
+  cron VARCHAR
+)
+--> service topic
 ```
 - runtime subscribe table
-```txt
-task - endpoint - downstream(event)
+```sql
+CREATE TABLE runtime_sub(
+  task_name VARCHAR,
+  step_name VARCHAR,
+  sub_task_name VARCHAR,
+  sub_event VARCHAR,
+  endpoint JSON,
+  cron VARCHAR
+)
+-- service result --> kafka connect --> kafka stream(filter sub) --> result topic
+# task - endpoint - downstream(event)
 ```
 
 ### consul
@@ -28,7 +44,6 @@ task - endpoint - downstream(event)
 - service alarm
 
 ### task(user define)
-#### foreign
 - subscribe／cron
 
 - task name
