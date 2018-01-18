@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ScappleDocument Version="1.1" ID="397DA713-E0F6-4A72-B447-9A868AB77E97">
+    <Notes>
+        <Note ID="1" FontSize="12.0" Position="1633.245862,698.209368" Width="95.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+            </Appearance>
+            <String>agent command</String>
+            <ConnectedNoteIDs>8, 38</ConnectedNoteIDs>
+            <PointsToNoteIDs>8</PointsToNoteIDs>
+        </Note>
+        <Note ID="2" FontSize="12.0" Position="1258.715488,731.711192" Width="73.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+            </Appearance>
+            <String>service - sql</String>
+            <ConnectedNoteIDs>8</ConnectedNoteIDs>
+            <PointsToNoteIDs>8</PointsToNoteIDs>
+        </Note>
+        <Note ID="3" FontSize="12.0" Position="1347.365273,757.757528" Width="70.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+            </Appearance>
+            <String>service - es</String>
+            <ConnectedNoteIDs>8, 36</ConnectedNoteIDs>
+            <PointsToNoteIDs>8</PointsToNoteIDs>
+        </Note>
+        <Note ID="4" FontSize="12.0" Position="1708.057832,660.686328" Width="57.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+            </Appearance>
+            <String>agent file</String>
+            <ConnectedNoteIDs>8, 39</ConnectedNoteIDs>
+            <PointsToNoteIDs>8</PointsToNoteIDs>
+        </Note>
+        <Note ID="5" FontSize="12.0" Position="721.724247,636.920328" Width="41.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+            </Appearance>
+            <String>task 1</String>
+            <ConnectedNoteIDs>12, 34</ConnectedNoteIDs>
+            <PointsToNoteIDs>12</PointsToNoteIDs>
+        </Note>
+        <Note ID="6" FontSize="12.0" Position="1489.889251,746.295479" Width="87.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+            </Appearance>
+            <String>service - alarm</String>
+            <ConnectedNoteIDs>8, 37</ConnectedNoteIDs>
+            <PointsToNoteIDs>8</PointsToNoteIDs>
+        </Note>
+        <Note ID="8" FontSize="12.0" Position="1436.255661,573.852465" Width="140.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+            </Appearance>
+            <String>middle: 
+service execute dispatch</String>
+            <ConnectedNoteIDs>0-4, 6, 43</ConnectedNoteIDs>
+            <PointsToNoteIDs>0-4, 6</PointsToNoteIDs>
+        </Note>
+        <Note ID="11" FontSize="12.0" Position="899.846534,793.502289" Width="41.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+            </Appearance>
+            <String>task 2</String>
+            <ConnectedNoteIDs>12, 33</ConnectedNoteIDs>
+            <PointsToNoteIDs>12</PointsToNoteIDs>
+        </Note>
+        <Note ID="10" FontSize="12.0" Position="1749.098645,498.301373" Width="80.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+            </Appearance>
+            <String>consul server</String>
+        </Note>
+        <Note ID="12" FontSize="12.0" Position="970.413764,597.425631" Width="57.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+            </Appearance>
+            <String>middle 3 </String>
+            <ConnectedNoteIDs>5, 11, 13, 16, 23, 44</ConnectedNoteIDs>
+            <PointsToNoteIDs>5, 11, 16, 23</PointsToNoteIDs>
+        </Note>
+        <Note ID="13" FontSize="12.0" Position="1408.486504,438.009333" Width="77.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+            </Appearance>
+            <String>kafka stream</String>
+            <ConnectedNoteIDs>0, 12, 23</ConnectedNoteIDs>
+            <PointsToNoteIDs>12</PointsToNoteIDs>
+        </Note>
+        <Note ID="16" FontSize="12.0" Position="1065.546406,276.166645" Width="107.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+            </Appearance>
+            <String>mysql table:
+runtime_cron_task</String>
+            <ConnectedNoteIDs>12, 19, 40</ConnectedNoteIDs>
+            <PointsToNoteIDs>19, 40</PointsToNoteIDs>
+        </Note>
+        <Note ID="23" FontSize="12.0" Position="1093.588552,422.338341" Width="135.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+            </Appearance>
+            <String>mysql table:
+runtime_subscribe_task</String>
+            <ConnectedNoteIDs>12-13, 40</ConnectedNoteIDs>
+            <PointsToNoteIDs>13, 40</PointsToNoteIDs>
+        </Note>
+        <Note ID="0" FontSize="12.0" Position="1609.086346,366.374093" Width="37.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+            </Appearance>
+            <String>kafka</String>
+            <ConnectedNoteIDs>8, 13, 19</ConnectedNoteIDs>
+            <PointsToNoteIDs>8, 13</PointsToNoteIDs>
+        </Note>
+        <Note ID="15" FontSize="12.0" Position="1588.628747,309.972961" Width="73.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+            </Appearance>
+            <String>kafka ktable</String>
+        </Note>
+        <Note ID="19" FontSize="12.0" Position="1397.011282,298.852504" Width="83.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+            </Appearance>
+            <String>kafka connect</String>
+            <ConnectedNoteIDs>0, 16</ConnectedNoteIDs>
+            <PointsToNoteIDs>0</PointsToNoteIDs>
+        </Note>
+        <Note ID="32" FontSize="12.0" Position="553.638615,667.468716" Width="319.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>task name
+step name, endpoint, step type cron | subscribe next event
+step name, endpoint, format  next event
+step name, endpoint, filter next event
+step name, endpoint, service name args&lt;json&gt; next event
+step name, </String>
+        </Note>
+        <Note ID="33" FontSize="12.0" Position="951.968353,826.568251" Width="77.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>consul agent</String>
+            <ConnectedNoteIDs>11</ConnectedNoteIDs>
+        </Note>
+        <Note ID="34" FontSize="12.0" Position="624.301343,603.000792" Width="77.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>consul agent</String>
+            <ConnectedNoteIDs>5</ConnectedNoteIDs>
+        </Note>
+        <Note ID="35" FontSize="12.0" Position="1180.338072,725.136703" Width="77.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>consul agent</String>
+        </Note>
+        <Note ID="36" FontSize="12.0" Position="1260.463166,783.144468" Width="77.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>consul agent</String>
+            <ConnectedNoteIDs>3</ConnectedNoteIDs>
+        </Note>
+        <Note ID="37" FontSize="12.0" Position="1507.177799,800.525176" Width="77.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>consul agent</String>
+            <ConnectedNoteIDs>6</ConnectedNoteIDs>
+        </Note>
+        <Note ID="38" FontSize="12.0" Position="1628.774356,753.496545" Width="77.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>consul agent</String>
+            <ConnectedNoteIDs>1</ConnectedNoteIDs>
+        </Note>
+        <Note ID="39" FontSize="12.0" Position="1790.64973,658.16421" Width="77.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>consul agent</String>
+            <ConnectedNoteIDs>4</ConnectedNoteIDs>
+        </Note>
+        <Note ID="40" FontSize="12.0" Position="765.648139,390.561946" Width="75.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+            </Appearance>
+            <String>middle:
+check global</String>
+            <ConnectedNoteIDs>16, 23, 42</ConnectedNoteIDs>
+        </Note>
+        <Note ID="42" FontSize="12.0" Position="685.90676,359.532851" Width="77.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>consul agent</String>
+            <ConnectedNoteIDs>40</ConnectedNoteIDs>
+        </Note>
+        <Note ID="43" FontSize="12.0" Position="1311.596415,556.579187" Width="77.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>consul agent</String>
+            <ConnectedNoteIDs>8</ConnectedNoteIDs>
+        </Note>
+        <Note ID="44" FontSize="12.0" Position="1052.856287,641.376583" Width="77.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>consul agent</String>
+            <ConnectedNoteIDs>12</ConnectedNoteIDs>
+        </Note>
+        <Note ID="45" FontSize="12.0" Position="645.0,436.0" Width="309.0">
+            <Appearance>
+                <Alignment>Left</Alignment>
+                <Border Weight="1"></Border>
+            </Appearance>
+            <String>clear row table: runtime_cron_task when task down
+clear row table: runtime_subscribe_task when task down </String>
+        </Note>
+    </Notes>
+    <BackgroundShapes>
+        <Shape ID="29" Sticky="Yes" Position="1377.160218,282.875" Width="358.647274" Height="195.686946">
+            <Appearance>
+                <Border Weight="1">0.26949 0.164034 0.186694</Border>
+                <Fill>0.934157 0.888319 0.78529</Fill>
+            </Appearance>
+        </Shape>
+    </BackgroundShapes>
+    <Labels>
+        <Label IDs="13,23">subscribe config</Label>
+        <Label IDs="6,8">grpc</Label>
+        <Label IDs="11,12">register (subscribe | cron)</Label>
+        <Label IDs="3,8">grpc</Label>
+        <Label IDs="12,23">register cron task subscribe</Label>
+        <Label IDs="0,19">task</Label>
+        <Label IDs="16,19">cron task</Label>
+        <Label IDs="12,13">(subscribed | complete) to task</Label>
+        <Label IDs="0,8">(send | receive)  task</Label>
+        <Label IDs="23,40">task down clean table</Label>
+        <Label IDs="16,40">task down clean table</Label>
+        <Label IDs="5,12">http: register (subscribe | cron)</Label>
+        <Label IDs="12,16">register cron task step</Label>
+        <Label IDs="0,13">completed task topic</Label>
+        <Label IDs="2,8">grpc</Label>
+    </Labels>
+    <AutoFit>0-6, 8, 10-13, 15-16, 19, 23, 32-40, 42-45</AutoFit>
+    <NoteStyles>
+        <Style Name="Blue Bubble" ID="BC25ABF1-D213-4F97-BAC8-A6FF94D1C2F4" AffectFontStyle="No" AffectAlignment="No" AffectTextColor="No" AffectNoteBody="Yes" AffectSize="No" AffectFade="No" AffectSticky="No">
+            <BorderThickness>1</BorderThickness>
+            <BorderColor>0.485893 0.568933 0.756207</BorderColor>
+            <FillColor>0.844068 0.869596 0.923064</FillColor>
+        </Style>
+        <Style Name="Brown Bubble" ID="444429B4-22A1-4C66-8A18-8F9FED4CE3EA" AffectFontStyle="No" AffectAlignment="No" AffectTextColor="No" AffectNoteBody="Yes" AffectSize="No" AffectFade="No" AffectSticky="No">
+            <BorderThickness>1</BorderThickness>
+            <BorderColor>0.26949 0.164034 0.186694</BorderColor>
+            <FillColor>0.934157 0.888319 0.78529</FillColor>
+        </Style>
+        <Style Name="Green Bubble" ID="2DD79136-6B5D-42EC-8FA7-A4D61CC332BE" AffectFontStyle="No" AffectAlignment="No" AffectTextColor="No" AffectNoteBody="Yes" AffectSize="No" AffectFade="No" AffectSticky="No">
+            <BorderThickness>1</BorderThickness>
+            <BorderColor>0.3991 0.583322 0.354864</BorderColor>
+            <FillColor>0.808835 0.872419 0.801343</FillColor>
+        </Style>
+        <Style Name="Pink Bubble" ID="4FFA7F91-163E-4578-9B0D-5631B5D6C1FB" AffectFontStyle="No" AffectAlignment="No" AffectTextColor="No" AffectNoteBody="Yes" AffectSize="No" AffectFade="No" AffectSticky="No">
+            <BorderThickness>1</BorderThickness>
+            <BorderColor>0.690303 0.407263 0.550912</BorderColor>
+            <FillColor>0.898329 0.817472 0.865339</FillColor>
+        </Style>
+        <Style Name="Red Text" ID="EA4893B5-B2B3-407F-8C76-A68EFA801401" AffectFontStyle="No" AffectAlignment="No" AffectTextColor="Yes" AffectNoteBody="No" AffectSize="No" AffectFade="No" AffectSticky="No">
+            <TextColor>1.0 0.0 0.0</TextColor>
+        </Style>
+        <Style Name="Title Text" ID="BE4B6D21-6C55-403B-B90A-0CD97FF4910E" AffectFontStyle="Yes" AffectAlignment="Yes" AffectTextColor="No" AffectNoteBody="No" AffectSize="No" AffectFade="No" AffectSticky="No">
+            <FontSize>12.0</FontSize>
+            <IsBold>Yes</IsBold>
+        </Style>
+        <Style Name="Yellow Bubble" ID="16985904-5602-491B-94D8-9AF09351860A" AffectFontStyle="No" AffectAlignment="No" AffectTextColor="No" AffectNoteBody="Yes" AffectSize="No" AffectFade="No" AffectSticky="No">
+            <BorderThickness>1</BorderThickness>
+            <BorderColor>0.769436 0.762219 0.390143</BorderColor>
+            <FillColor>0.912963 0.894118 0.644541</FillColor>
+        </Style>
+    </NoteStyles>
+    <UISettings>
+        <BackgroundColor>1.0 0.988006 0.945006</BackgroundColor>
+        <DefaultFont>Helvetica</DefaultFont>
+        <DefaultTextColor>0.0 0.0 0.0</DefaultTextColor>
+    </UISettings>
+    <PrintSettings PaperSize="-1.0,-1.0" LeftMargin="12.0" RightMargin="12.0" TopMargin="12.0" BottomMargin="12.0" PaperType="A4126F2B-3E81-431F-86F8-2A6D7A1C0EDB" Orientation="Portrait" HorizontalPagination="Clip" VerticalPagination="Auto" ScaleFactor="1.0" HorizontallyCentered="Yes" VerticallyCentered="Yes" Collates="Yes" PagesAcross="1" PagesDown="1"></PrintSettings>
+</ScappleDocument>
