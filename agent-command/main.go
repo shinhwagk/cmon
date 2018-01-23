@@ -1,29 +1,57 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"io/ioutil"
+	"log"
 	"net/http"
+	"os/exec"
+	// "github.com/gorilla/mux"
 )
 
 func main() {
+	// executeCommand("")
+	HTTPServer()
+}
 
-	resp, err := http.Get("http://baidu.com/")
+type ExecuteContent struct {
+	Command string `json:"command"`
+}
+
+type ExecuteResult struct {
+	Err string
+	Res string
+}
+
+func executeCommand(command string) *ExecuteResult {
+	cmd := exec.Command("echo", command)
+
+	out, err := cmd.Output()
+
 	if err != nil {
-		// handle error
+		return &ExecuteResult{err.Error(), "nil"}
 	}
-	defer resp.Body.Close()
-	body, err := ioutil.ReadAll(resp.Body)
-	fmt.Println(string(body))
+	return &ExecuteResult{"nil", string(out)}
 }
 
-type Task struct {
+// HTTPServer only Post
+func HTTPServer() {
+	http.HandleFunc("/v1/execute", handler)
+	log.Fatal(http.ListenAndServe("0.0.0.0:8000", nil))
 }
 
-type ConsulService struct {
+// handler ...
+func handler(w http.ResponseWriter, r *http.Request) {
+	body, err := ioutil.ReadAll(r.Body)
+	data := ExecuteContent{}
+	json.Unmarshal(body, &data)
+
+	er := executeCommand(data.Command)
+
+	if err != nil {
+		fmt.Fprintf(w, err.Error())
+	}
+	fmt.Fprintf(w, er.Res)
 }
 
-// func aaa(str string, ch chan<- string) {
-// 	fmt.Println(str)
-// 	// ch <- str
-// }
