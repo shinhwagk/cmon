@@ -7,7 +7,6 @@ import (
 	"log"
 	"net/http"
 	"os/exec"
-	// "github.com/gorilla/mux"
 )
 
 func main() {
@@ -20,19 +19,18 @@ type ExecuteContent struct {
 }
 
 type ExecuteResult struct {
-	Err string
 	Res string
 }
 
-func executeCommand(command string) *ExecuteResult {
-	cmd := exec.Command("echo", command)
+func executeCommand(command string) string {
+	cmd := exec.Command("/bin/bash", command)
 
 	out, err := cmd.Output()
 
 	if err != nil {
-		return &ExecuteResult{err.Error(), "nil"}
+		return ""
 	}
-	return &ExecuteResult{"nil", string(out)}
+	return string(out)
 }
 
 // HTTPServer only Post
@@ -50,7 +48,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	er := executeCommand(data.Command)
 
 	if err != nil {
-		fmt.Fprintf(w, err.Error())
+		fmt.Fprintf(w, "")
 	}
 	fmt.Fprintf(w, er.Res)
 }
