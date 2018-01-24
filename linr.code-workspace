@@ -17,6 +17,9 @@
 		},
 		{
 			"path": "task-middle-node"
+		},
+		{
+			"path": "script"
 		}
 	],
 	"settings": {}
