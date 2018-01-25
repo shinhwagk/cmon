@@ -36,12 +36,17 @@ func executeCommand(command string) string {
 
 // HTTPServer only Post
 func HTTPServer() {
-	http.HandleFunc("/", handler)
+	http.HandleFunc("/command", commandHandler)
+	http.HandleFunc("/script", scriptHandler)
 	log.Fatal(http.ListenAndServe("0.0.0.0:8000", nil))
 }
 
-// handler ...
-func handler(w http.ResponseWriter, r *http.Request) {
+func scriptHandler(w http.ResponseWriter, r *http.Request) {
+
+}
+
+// command handler ...
+func commandHandler(w http.ResponseWriter, r *http.Request) {
 	body, err := ioutil.ReadAll(r.Body)
 	fmt.Println(body, string(body))
 	data := ExecuteContent{}

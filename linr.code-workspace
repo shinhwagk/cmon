@@ -20,6 +20,15 @@
 		},
 		{
 			"path": "script"
+		},
+		{
+			"path": "design"
+		},
+		{
+			"path": "test"
+		},
+		{
+			"path": "tasks"
 		}
 	],
 	"settings": {}
