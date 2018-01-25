@@ -7,6 +7,9 @@
 			"path": "agent-sql"
 		},
 		{
+			"path": "service-alarm"
+		},
+		{
 			"path": "httpClient-golang"
 		},
 		{
@@ -29,6 +32,9 @@
 		},
 		{
 			"path": "tasks"
+		},
+		{
+			"path": "grafana"
 		}
 	],
 	"settings": {}
