@@ -1,8 +1,8 @@
-export interface DistSpace {
+export interface DiskSpace {
     Filesystem: string;
     Blocks: number;
     Used: number;
-    Available: number;
+    UsedAvailable: number;
     Capacity: number;
     MountedOn: number;
 }

@@ -1,7 +1,6 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"log"
@@ -23,7 +22,7 @@ type ExecuteResult struct {
 }
 
 func executeCommand(command string) string {
-	cmd := exec.Command("sh", "-c", command)
+	cmd := exec.Command("/bin/bash", "-c", command)
 
 	out, err := cmd.Output()
 
@@ -34,9 +33,20 @@ func executeCommand(command string) string {
 	return string(out)
 }
 
+func readFile() func(http.ResponseWriter, *http.Request) {
+	dat, _ := ioutil.ReadFile("./disk.sh")
+
+	return func(w http.ResponseWriter, r *http.Request) {
+		er := executeCommand(string(dat))
+		fmt.Println(er)
+		fmt.Fprintf(w, er)
+	}
+
+}
+
 // HTTPServer only Post
 func HTTPServer() {
-	http.HandleFunc("/command", commandHandler)
+	http.HandleFunc("/command", readFile())
 	http.HandleFunc("/script", scriptHandler)
 	log.Fatal(http.ListenAndServe("0.0.0.0:8000", nil))
 }
@@ -47,18 +57,20 @@ func scriptHandler(w http.ResponseWriter, r *http.Request) {
 
 // command handler ...
 func commandHandler(w http.ResponseWriter, r *http.Request) {
-	body, err := ioutil.ReadAll(r.Body)
-	fmt.Println(body, string(body))
-	data := ExecuteContent{}
-	json.Unmarshal(body, &data)
+	// body, err := ioutil.ReadAll(r.Body)
+	// body := readFile()
 
-	fmt.Println(data.Command)
+	// // fmt.Println(body, string(body))
+	// // data := ExecuteContent{}
+	// // json.Unmarshal(body, &data)
 
-	er := executeCommand(data.Command)
+	// // fmt.Println(data.Command)
 
-	if err != nil {
-		fmt.Fprintf(w, "")
-	}
+	// er := executeCommand(body)
+	// fmt.Println(er)
+	// // if err != nil {
+	// // 	fmt.Fprintf(w, "")
+	// // }
 
-	fmt.Fprintf(w, er)
+	// fmt.Fprintf(w, er)
 }

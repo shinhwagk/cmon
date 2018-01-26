@@ -15,15 +15,15 @@ function splitt() {
   col=`getColumn "$line" 1`;
   colr1="{\"Filesystem\":\"$col\","
   col=`getColumn "$line" 2`;
-  colr2="\"1024-blocks\":\"${col}\","
+  colr2="\"blocks\":${col},"
   col=`getColumn "$line" 3`;
-  colr3="\"Used\":\"$col\","
+  colr3="\"Used\":$col,"
   col=`getColumn "$line" 4`;
-  colr4="\"Used Available\":\"$col\","
+  colr4="\"UsedAvailable\":\"$col\","
   col=`getColumn "$line" 5`;
-  colr5="\"Capacity\":\"${col::-1}\","
+  colr5="\"Capacity\": ${col::-1},"
   col=`getColumn "$line" 6`;
-  colr6="\"Mounted on\":\"$col\"}"
+  colr6="\"MountedOn\":\"$col\"}"
   echo ${colr1}${colr2}${colr3}${colr4}${colr5}${colr6}
 }
 
