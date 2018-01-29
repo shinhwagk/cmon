@@ -2,7 +2,9 @@ import * as event from "events";
 import * as http from "http";
 
 import { DiskSpace } from './metric/DiskSpace';
+import { OSEndPoints, OSEndPoint } from "./EndPoint"
 import { setInterval } from "timers";
+import { inflate } from "zlib";
 
 // import { IStep } from "./step"
 
@@ -62,11 +64,11 @@ class FilterStep<T> implements IStep {
     s.forEach(n => n.pushSteps(this))
   }
 
-  action(f: (a: T) => boolean): (elem: T) => void {
-    return (upval: T) => {
+  action(f: (a: T) => boolean): (point: OSEndPoint, elem: T) => void {
+    return (point: OSEndPoint, upval: T) => {
       if (f(upval)) {
         console.info("send data to print ", upval)
-        this.ename.forEach(name => this.event.emit(name, upval))
+        this.ename.forEach(name => this.event.emit(name, point, upval))
       }
     }
   }
@@ -82,51 +84,53 @@ class FilterStep<T> implements IStep {
   }
 }
 
-class CronStep<T> implements IStep {
+class CronStep<M, P> implements IStep {
   steps: IStep[];
 
+  points: P[];
   name: string = "cron";
   event: event.EventEmitter;
-  f: () => Promise<T[]>
+  f: (point: P) => Promise<M[]>
   s: number
   ename: string[] = [];
 
   subEvent(name: string) {
     this.ename.push(name)
   }
+
   pushSteps(step: IStep): void {
     this.steps.push(step)
   }
-  constructor(event: event.EventEmitter, s: number, f: () => Promise<T[]>) {
+
+  constructor(points: P[], event: event.EventEmitter, s: number, f: (point: P) => Promise<M[]>) {
     console.info("cron construc")
     this.event = event
     this.f = f
+    this.points = points
     this.s = s
   }
 
   // down
   sub(...s: IStep[]) {
-    s.map(s => s.name).forEach(n => this.subEvent(n))
-    s.forEach(n => n.pushSteps(this))
+    s.forEach(n => {
+      this.subEvent(n.name)
+      n.pushSteps(this)
+    })
   }
 
   start(): void {
     console.info("cron listener start ")
-    // s.forEach(x => x.start())
     this.disp()
   }
 
-  send(x: T): void {
-    this.ename.forEach(name => this.event.emit(name, x))
+  send(point: P, x: M): void {
+    this.ename.forEach(name => this.event.emit(name, point, x))
   }
 
   disp() {
-    // console.info("send data to filter",<any>{"Capacity": 100})
-    // this.event.emit("filter",<any>{"Capacity":111})
-    setInterval(() => { this.f().then(r => { r.forEach(x => this.send(x)) }) }, this.s)
-    // this.ename.forEach(name => this.event.emit(name, <any>{"Filesystem":"xxxxx"}))
-    // this.ename.forEach(name => this.event.emit(name, <any>{"Filesystem":"xxxxx"}))
-    // setInterval(()=>this.send(<any>{"Filesystem":"xxxxx"}),1000)
+    setInterval(() => {
+      this.points.forEach(p => { this.f(p).then(r => { r.forEach(x => this.send(p, x)) }) })
+    }, this.s)
   }
 
 }
@@ -136,7 +140,7 @@ class PrintStep<T> implements IStep {
   ename: string[] = [];
   name: string = "print";
   event: event.EventEmitter;
-  f: (a: T) => void
+  f: (p: OSEndPoint, a: T) => void
   pushSteps(step: IStep): void {
     this.steps.push(step)
   }
@@ -157,23 +161,47 @@ class PrintStep<T> implements IStep {
     throw new Error("Method not implemented.");
   }
 
-  constructor(event: event.EventEmitter, f: (a: T) => void) {
+  constructor(event: event.EventEmitter, f: (p: OSEndPoint, a: T) => void) {
     console.info("print construc")
     this.event = event
     this.f = f
   }
 }
 
-const e = new event.EventEmitter();
+class InfluxStep<T, U> implements IStep {
+  constructor(name: string, tags: string[]) {
+    name
+  }
 
-function getDiskSpace(): Promise<DiskSpace[]> {
-  return new Promise((r, x) => {
-    http.get("http://127.0.0.1:8000/command", (res) => {
+  start(): void {
+    throw new Error("Method not implemented.");
+  }
+  ename: string[];
+  name: string;
+  subEvent(name: string): void {
+    throw new Error("Method not implemented.");
+  }
+  steps: IStep[];
+  sub(...s: IStep[]): void {
+    throw new Error("Method not implemented.");
+  }
+  pushSteps(step: IStep): void {
+    throw new Error("Method not implemented.");
+  }
+
+}
+
+const e = new event.EventEmitter();
+// function execCommand<T, U extends { ip: string }> 
+
+const execCommand = <M, U extends OSEndPoint>(point: U) => {
+  return new Promise<M>((r, x) => {
+    http.get(`http://${point.ip}:8000/command`, (res) => {
       const data: Buffer[] = []
       res.on("data", (chunk: Buffer) => { data.push(chunk) })
       res.on('end', () => {
         try {
-          r(<DiskSpace[]>JSON.parse(data.toString()))
+          r(<M>JSON.parse(data.toString()))
         } catch (e) {
           console.error(`${e},${data.toString()}`)
         }
@@ -182,22 +210,40 @@ function getDiskSpace(): Promise<DiskSpace[]> {
   })
 }
 
-const cs: IStep = new CronStep<DiskSpace>(e, 1000, getDiskSpace);
-const filter: IStep = new FilterStep<DiskSpace>(e, (ds) => ds.Capacity >= 10);
-const print: IStep = new PrintStep<DiskSpace>(e, (d) => console.info((new Date).getMilliseconds(), d.Capacity))
+interface Item<T, U> {
+  point: T
+  metric: U
+}
 
-cs.sub(filter)
-filter.sub(print)
-print.start()
+const cs: IStep = new CronStep<DiskSpace, OSEndPoint>(OSEndPoints, e, 1000, execCommand);
+const filter: IStep = new FilterStep<DiskSpace>(e, (ds) => ds.Capacity >= 10);
+const print: IStep = new PrintStep<DiskSpace>(e, (p, d) => console.info(p, (new Date).getMilliseconds(), d.Capacity));
+const influx: IStep = new InfluxStep<DiskSpace, OSEndPoint>("disk", [])
+
+cs.sub(filter, influx)
+       filter.sub(print)
+                  print.start()
+               influx.start()
+
+// class GGG {
+//   ss: IStep[] = []
+//   sub(s: IStep, ...as: IStep[]) {
+
+//   }
+//   start() {
+
+//   }
+// }
+
+// const ggg = new GGG()
+// ggg.sub(cs, filter)
+//     ggg.sub(filter, print)
 
 // e.on("a",()=>console.info("xxx"))
 
 // e.emit("a")
 
 // getDiskSpace().then(console.info)
-
-
-
 
 // interface IFilterStep<T> {
 //   (result: T[], filterFunc: (r: T[]) => T[]): T[]
