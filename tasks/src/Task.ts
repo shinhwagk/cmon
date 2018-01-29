@@ -169,15 +169,20 @@ class PrintStep<T> implements IStep {
 }
 
 class InfluxStep<T, U> implements IStep {
-  constructor(name: string, tags: string[]) {
-    name
+  name: string
+  tags: string[] = []
+  values: string[] = []
+  constructor(name: string, tags: string[], values: string[]) {
+    this.name = name
+    this.tags = tags
+    this.values = values
   }
 
   start(): void {
     throw new Error("Method not implemented.");
   }
   ename: string[];
-  name: string;
+
   subEvent(name: string): void {
     throw new Error("Method not implemented.");
   }
@@ -218,12 +223,12 @@ interface Item<T, U> {
 const cs: IStep = new CronStep<DiskSpace, OSEndPoint>(OSEndPoints, e, 1000, execCommand);
 const filter: IStep = new FilterStep<DiskSpace>(e, (ds) => ds.Capacity >= 10);
 const print: IStep = new PrintStep<DiskSpace>(e, (p, d) => console.info(p, (new Date).getMilliseconds(), d.Capacity));
-const influx: IStep = new InfluxStep<DiskSpace, OSEndPoint>("disk", [])
+const influx: IStep = new InfluxStep<DiskSpace, OSEndPoint>("disk", [], [])
 
 cs.sub(filter, influx)
-       filter.sub(print)
-                  print.start()
-               influx.start()
+filter.sub(print)
+print.start()
+influx.start()
 
 // class GGG {
 //   ss: IStep[] = []
