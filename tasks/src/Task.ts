@@ -57,7 +57,6 @@ abstract class AbstractStep implements IStep {
 }
 
 class FilterStep<T> extends AbstractStep {
-  name: string = "filter";
   process: (emt: any, point: any, data: any) => void
   listener = (emit: any) => (point: any, elem: any) => {
     if (this.func(elem)) { emit(point, elem) }
@@ -207,7 +206,15 @@ class Start {
   }
 }
 
+function sss(g:[])
+
 const start = new Start()
 start.sub(cs, filter, influx)
 start.sub(filter, print)
 start.end()
+
+
+
+
+
+const filter1 =  
