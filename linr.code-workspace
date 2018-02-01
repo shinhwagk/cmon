@@ -38,6 +38,9 @@
 		},
 		{
 			"path": "deploy"
+		},
+		{
+			"path": "influx"
 		}
 	],
 	"settings": {}

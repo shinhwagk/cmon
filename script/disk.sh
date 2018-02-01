@@ -19,7 +19,7 @@ function splitt() {
   col=`getColumn "$line" 3`;
   colr3="\"Used\":$col,"
   col=`getColumn "$line" 4`;
-  colr4="\"UsedAvailable\":\"$col\","
+  colr4="\"Available\":\"$col\","
   col=`getColumn "$line" 5`;
   colr5="\"Capacity\": ${col::-1},"
   col=`getColumn "$line" 6`;

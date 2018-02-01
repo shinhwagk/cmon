@@ -1,0 +1,1 @@
+docker run -p 8888:8888 -d --link=pedantic_cori:influxdb chronograf --influxdb-url=http://influxdb:8086docker run -p 8888:8888 -d --link=pedantic_cori:influxdb chronograf --influxdb-url=http://influxdb:8086
