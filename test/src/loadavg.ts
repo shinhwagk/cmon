@@ -4,6 +4,7 @@ export interface OSEndPoint {
   name: string;
   ip: string;
 }
+
 type Metric = CpuStat
 
 export interface CpuStat {

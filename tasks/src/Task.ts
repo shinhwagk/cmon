@@ -144,6 +144,26 @@ const execCommand = <M, T extends { ip: string }>(name: string) => (p: T) => {
     })
 }
 
+const execSql = <R>(sql: string, args: any[]) => (name: string) => {
+    const post_options: http.RequestOptions = {
+        hostname: '127.0.0.1',
+        port: '8001',
+        path: `/v1/sql/yali2`,
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' }
+    };
+    return new Promise<R[]>((r, x) => {
+        const req = http.request(post_options, (res) => {
+            const data: Buffer[] = []
+            res.on("data", (chunk: Buffer) => { data.push(chunk) })
+            res.on("end", () => r(<R[]>JSON.parse(data.toString())))
+            res.on("error", (e) => x(e))
+        });
+        req.write(JSON.stringify([sql, args]));
+        req.end();
+    })
+}
+
 // const cs: Step = CreoStep<DiskSpace, OSEndPoint>("cron", 15000, OSEndPoints, execCommand)
 // const filter: Step = FilterStep<OSEndPoint, DiskSpace>("filter", (ds) => ds.Capacity >= 10)
 // const print: Step = PrintStep("print", (p, d) => console.info(p, (new Date).getMilliseconds(), d))
@@ -156,4 +176,4 @@ const execCommand = <M, T extends { ip: string }>(name: string) => (p: T) => {
 
 // sss(g)
 
-export { execCommand, sss, InfluxStep, CreoStep, FilterStep, PrintStep }
+export { execSql, execCommand, sss, InfluxStep, CreoStep, FilterStep, PrintStep }

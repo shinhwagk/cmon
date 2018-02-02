@@ -1,46 +1,14 @@
 import * as oracledb from "oracledb"
-import * as http from "http"
 
-interface query {
-    (select: string, args: any[]): Promise<string>
-}
-
-interface sendresult {
-    (result: string): void
-}
-
-interface IQueryAges {
-    SQL: string
-    ARGS: any[]
-}
-
-// function qtos(iqa: IQueryAges, query: query, sendresult: sendresult) {
-//     const result = query(iqa.SQL, iqa.ARGS);
-//     sendresult(result)
-// }
-
-interface QueryRest {
-    url: string
-}
-
-async function query111() {
-    return "a"
-}
-
-
-export function queryFunc(sql: string, args: any[]): Promise<string> {
+export function queryFunc(connect: oracledb.IConnectionAttributes, sql: string, args: any[]): Promise<any> {
     return new Promise(async (resolve, reject) => {
         let conn;
 
         try {
-            conn = await oracledb.getConnection({
-                user: "system",
-                password: "oracle",
-                connectString: "10.65.193.29/orcl"
-            });
+            conn = await oracledb.getConnection(connect);
 
             let result = await conn.execute(sql, args, { outFormat: oracledb.OBJECT });
-            resolve(JSON.stringify(result.rows));
+            resolve(result.rows);
 
         } catch (err) {
             reject(err);
@@ -55,5 +23,3 @@ export function queryFunc(sql: string, args: any[]): Promise<string> {
         }
     });
 }
-
-// getEmployee("WMSYS").then(rows => console.info(rows))
