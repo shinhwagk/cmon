@@ -18,8 +18,7 @@ export interface CpuStat {
 }
 
 export const OSEndPoints: OSEndPoint[] = [
-  { ip: "127.0.0.1", name: "test" },
-  // { ip: "127.0.0.1", name: "test2" },
+  { ip: "10.65.193.52", name: "test2" }
 ]
 
 function makeTags(p: OSEndPoint, d: Metric) {
@@ -29,7 +28,7 @@ function makeValues(p: OSEndPoint, d: Metric) {
   return { user: d.user, nice: d.nice, system: d.steal, idle: d.idle, iowait: d.iowait, irq: d.irq, steal: d.steal, guest: d.guest }
 }
 
-const cs: Step = CreoStep<Metric, OSEndPoint>("cron", 1000, OSEndPoints, execCommand<Metric, OSEndPoint>("cpustat"))
+const cs: Step = CreoStep<Metric, OSEndPoint>("cron", 15000, OSEndPoints, execCommand<Metric, OSEndPoint>("cpustat"))
 const print: Step = PrintStep("print", (p: OSEndPoint, d: Metric) => console.info(p, (new Date).getMilliseconds(), d))
 const influx: Step = InfluxStep<OSEndPoint, Metric>("influx", "cpustat", makeTags, makeValues)
 

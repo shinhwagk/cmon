@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 	"io"
-	"log"
+	"net"
 	"net/http"
 	"os"
 	"os/exec"
@@ -11,7 +11,6 @@ import (
 )
 
 func main() {
-	// executeCommand("")
 	HTTPServer()
 }
 
@@ -30,7 +29,7 @@ func downFile(name string) (err error) {
 	}
 	defer out.Close()
 
-	resp, err := http.Get("http://10.65.193.51:9008/files/" + name + ".sh")
+	resp, err := http.Get("http://files.linr.org:9501/files/" + name + ".sh")
 	if err != nil {
 		return err
 	}
@@ -63,8 +62,6 @@ func executeCommand(name string) string {
 }
 
 func readFile() func(http.ResponseWriter, *http.Request) {
-	// dat, _ := ioutil.ReadFile("./disk.sh")
-
 	return func(w http.ResponseWriter, r *http.Request) {
 
 		paths := strings.Split(r.URL.Path, "/")
@@ -81,29 +78,7 @@ func readFile() func(http.ResponseWriter, *http.Request) {
 // HTTPServer only Post
 func HTTPServer() {
 	http.HandleFunc("/v1/script/", readFile())
-	log.Fatal(http.ListenAndServe("0.0.0.0:8000", nil))
+	server := &http.Server{Handler: nil}
+	l, _ := net.Listen("tcp4", "0.0.0.0:8000")
+	server.Serve(l)
 }
-
-// func scriptHandler(w http.ResponseWriter, r *http.Request) {
-
-// }
-
-// // command handler ...
-// func commandHandler(w http.ResponseWriter, r *http.Request) {
-// 	// body, err := ioutil.ReadAll(r.Body)
-// 	// body := readFile()
-
-// 	// // fmt.Println(body, string(body))
-// 	// // data := ExecuteContent{}
-// 	// // json.Unmarshal(body, &data)
-
-// 	// // fmt.Println(data.Command)
-
-// 	// er := executeCommand(body)
-// 	// fmt.Println(er)
-// 	// // if err != nil {
-// 	// // 	fmt.Fprintf(w, "")
-// 	// // }
-
-// 	// fmt.Fprintf(w, er)
-// }

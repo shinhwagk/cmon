@@ -15,8 +15,7 @@ export interface DiskSpace {
 }
 
 export const OSEndPoints: OSEndPoint[] = [
-  { ip: "127.0.0.1", name: "test" },
-  { ip: "127.0.0.1", name: "test2" },
+  { ip: "10.65.193.52", name: "test2" },
 ]
 
 function makeTags(p: OSEndPoint, d: DiskSpace) {

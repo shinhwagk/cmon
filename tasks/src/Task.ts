@@ -45,7 +45,7 @@ function PrintStep<P, T>(name: string, PrintFunc: (point: P, elemt: T) => void):
 }
 
 function InfluxStep<P, M>(name: string, measurement: string, tags: (point: P, elem: M) => {}, values: (point: P, elem: M) => {}): Step {
-    const influx = new Influx.InfluxDB({ host: '10.65.193.51', database: 'mydb' })
+    const influx = new Influx.InfluxDB({ host: 'influxdb.linr.org', database: 'mydb' })
 
     const listener: FlowType = (emit: DownStreamEmitter) => (point: P, elem: M) => {
         influx.writePoints([

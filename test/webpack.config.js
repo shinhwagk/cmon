@@ -1,5 +1,5 @@
 module.exports = {
-  entry: './dist/loadavg.js',
+  entry: './dist/cpustat.js',
   output: {
     filename: 'entrypoint.js'
   },

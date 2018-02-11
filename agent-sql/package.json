@@ -10,7 +10,9 @@
   "license": "ISC",
   "devDependencies": {
     "@types/node": "^9.4.0",
-    "@types/oracledb": "^1.11.34"
+    "@types/oracledb": "^1.11.34",
+    "node-gyp": "^3.6.2",
+    "webpack-node-externals": "^1.6.0"
   },
   "dependencies": {
     "oracledb": "^2.0.15"

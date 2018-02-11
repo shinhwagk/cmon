@@ -1,6 +1,6 @@
 #!/bin/bash
 
-line=`sed -n "1p" /proc/loadavg`
+line=$(sed -n "1p" /proc/loadavg)
 
 function getColumn() {
   str=$1;
