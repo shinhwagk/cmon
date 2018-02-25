@@ -41,7 +41,17 @@
 		},
 		{
 			"path": "influx"
+		},
+		{
+			"path": ".",
+			"name": "root"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"typescript.tsc.autoDetect": "off",
+		"grunt.autoDetect": "off",
+		"jake.autoDetect": "off",
+		"gulp.autoDetect": "off",
+		"npm.autoDetect": "off"
+	}
 }

@@ -14,9 +14,7 @@ services:
         aliases:
           - files.linr.org
   agent-sql:
-    build:
-      context: ../agent-sql
-      dockerfile: Dockerfile
+    image: agent-sql
     container_name: linr-sql
     ports:
       - 9500:9500

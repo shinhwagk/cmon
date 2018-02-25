@@ -1,5 +1,7 @@
 # docker run --name gh-file-server -p 9008:80 -v ${pwd}\nginx.conf:/etc/nginx/nginx.conf:ro -v ${pwd}\files:/etc/nginx/html/files -d nginx
-. (".\lib.ps1");
+. ("${PSScriptRoot}\.\lib.ps1");
+
+sendFile @("./docker-compose.yml") "/opt/linr"
 
 # $name = "wex-files";
 

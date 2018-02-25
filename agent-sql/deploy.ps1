@@ -3,7 +3,7 @@ $server_ip = "10.65.193.51";
 
 $consul_server = "10.65.193.51";
 
-$files = @("src", "build.sh", "Dockerfile", "entrypoint.sh", "package-lock.json", "package.json", "tsconfig.json");
+$files = @("dist/entrypoint.js");
 
 $deploy_floder = "/tmp/agent-sql";
 
@@ -31,4 +31,9 @@ function sendFiles([array]$files) {
 
 function register_service($url) {
   
+}
+
+
+function build_image(){
+
 }

@@ -4,7 +4,7 @@
   "main": "./dist/Task.js",
   "types": "./dist/Task.d.js",
   "scripts": {
-    "test":"tsc && npm run mocha",
+    "test": "tsc && npm run mocha",
     "mocha": "mocha --require ts-node/register --watch-extensions ts \"test/test.ts\""
   },
   "devDependencies": {
@@ -16,6 +16,5 @@
   },
   "dependencies": {
     "influx": "^5.0.7"
-    
   }
 }

@@ -23,8 +23,8 @@ RUN npm install oracledb
 
 EXPOSE 9500
 
-ADD entrypoint.js entrypoint.js
-
 ENTRYPOINT [ "node" ]
 
 CMD [ "entrypoint.js" ]
+
+ADD entrypoint.js entrypoint.js

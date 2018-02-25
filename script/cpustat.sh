@@ -4,11 +4,11 @@
 
 FILE="/proc/stat"
 CATCMD=$(which cat)
-CPUDATA=`$CATCMD $FILE | head -1`
+CPUDATA=$($CATCMD $FILE | head -1)
 
 [ -e /tmp/cpusta1t ] || mkdir -p /tmp/cpustat && echo "$CPUDATA" > /tmp/cpustat/cache
 
-OLDCPUDATA=`sed -n '1p' /tmp/cpustat/cache`
+OLDCPUDATA=$(sed -n '1p' /tmp/cpustat/cache);
 
 # get field
 gf(){

@@ -1,10 +1,18 @@
 const nodeExternals = require('webpack-node-externals');
 
 module.exports = {
-  entry: './dist/httpserver.js',
+  entry: './src/main.ts',
   output: {
-    filename: './entrypoint.js'
+    filename: './dist/entrypoint.js'
   },
   target: 'node',
+  resolve: {
+    extensions: ['.ts', '.js']
+  },
+  module: {
+    loaders: [
+      { test: /\.ts$/, loader: 'awesome-typescript-loader' }
+    ]
+  },
   externals: [nodeExternals()],
 };

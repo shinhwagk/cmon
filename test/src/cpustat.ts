@@ -1,4 +1,4 @@
-import { CreoStep, FilterStep, PrintStep, InfluxStep, execCommand, Step, sss } from "tasks";
+import { CreoStep, FilterStep, PrintStep, InfluxStep, execCommand, Step, RunTasks } from "tasks";
 
 export interface OSEndPoint {
   name: string;
@@ -37,4 +37,4 @@ const g: Step[][] = [
   [cs, print]
 ]
 
-sss(g)
+RunTasks(g)

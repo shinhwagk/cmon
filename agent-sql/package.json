@@ -4,17 +4,19 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@types/node": "^9.4.0",
+    "@types/node": "^9.4.6",
     "@types/oracledb": "^1.11.34",
+    "awesome-typescript-loader": "^3.4.1",
     "node-gyp": "^3.6.2",
-    "webpack-node-externals": "^1.6.0"
-  },
-  "dependencies": {
-    "oracledb": "^2.0.15"
+    "typescript": "^2.7.2",
+    "webpack": "^3.11.0",
+    "webpack-node-externals": "^1.6.0",
+    "oracledb": "^2.1.2"
   }
 }

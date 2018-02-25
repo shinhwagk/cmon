@@ -60,7 +60,7 @@ function InfluxStep<P, M>(name: string, measurement: string, tags: (point: P, el
     return [name, listener, null]
 }
 
-function sss(ss: Step[][]) {
+function RunTasks(ss: Step[][]) {
     const e: EventEmitter = new EventEmitter();
     const isds: { [name: string]: string[] } = {};
     const steps: Step[] = [];
@@ -144,11 +144,11 @@ const execCommand = <M, T extends { ip: string }>(name: string) => (p: T) => {
     })
 }
 
-const execSql = <R>(sql: string, args: any[]) => (name: string) => {
+const execSql = <R, T extends { name: string }>(sql: string, args: any[]) => (p: T) => {
     const post_options: http.RequestOptions = {
         hostname: '127.0.0.1',
         port: '8001',
-        path: `/v1/sql/yali2`,
+        path: `/v1/sql/${p.name}`,
         method: 'POST',
         headers: { 'Content-Type': 'application/json' }
     };
@@ -176,4 +176,4 @@ const execSql = <R>(sql: string, args: any[]) => (name: string) => {
 
 // sss(g)
 
-export { execSql, execCommand, sss, InfluxStep, CreoStep, FilterStep, PrintStep }
+export { execSql, execCommand, RunTasks, InfluxStep, CreoStep, FilterStep, PrintStep }
