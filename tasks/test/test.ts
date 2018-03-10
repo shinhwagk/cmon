@@ -2,6 +2,9 @@ import * as mocha from "mocha";
 import * as assert from "assert";
 
 import * as tasks from "../src/Task"
+import * as tasklib from  "cmon-task-lib";
+
+tasklib.httpRestClient
 
 interface DiskSpace {
   Filesystem: string;

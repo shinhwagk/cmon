@@ -7,14 +7,7 @@
     "test": "tsc && npm run mocha",
     "mocha": "mocha --require ts-node/register --watch-extensions ts \"test/test.ts\""
   },
-  "devDependencies": {
-    "@types/mocha": "^2.2.47",
-    "@types/node": "^9.4.0",
-    "mocha": "^5.0.0",
-    "typescript": "^2.6.2",
-    "ts-node": "^4.1.0"
-  },
   "dependencies": {
-    "influx": "^5.0.7"
+    "cmon-task-lib": "^1.2.3"
   }
 }
