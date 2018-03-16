@@ -1,12 +1,10 @@
+$ErrorActionPreference = "Stop"
 # $server_user = "root";
 $machine = "linr";
-docker-machine env $machine | Invoke-Expression
 
-$consul_server = "10.65.193.51";
+docker-machine env --shell powershell $machine | Invoke-Expression
 
-# $files = @("src", "build.sh", "Dockerfile", "entrypoint.sh", "package-lock.json", "package.json", "tsconfig.json");
-
-# $deploy_floder = "/tmp/agent-sql";
+# $consul_server = "10.65.193.52";
 
 function execCommand([string]$command) {
     docker-machine ssh ${machine} "${command}";
@@ -14,7 +12,7 @@ function execCommand([string]$command) {
 
 function scpFile($file, $deploy_floder) {
     $arg = "";
-    if ((Get-Item ./${file}) -is [System.IO.DirectoryInfo]) {
+    if ((Get-Item $file) -is [System.IO.DirectoryInfo]) {
         $arg = "-r";
     }
     docker-machine scp ${arg} ${file} ${machine}:${deploy_floder};
@@ -32,16 +30,4 @@ function sendFiles([array]$files, $deploy_floder, $exist = $true) {
     foreach ($file in $files) {
         scpFile ${file} ${deploy_floder};
     }
-}
-
-function register_service($url) {
-  
-}
-
-function docker_run($name, $posts) {
-	
-}
-
-function dps() {
-    docker-compose ps
 }

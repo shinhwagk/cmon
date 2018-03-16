@@ -1,15 +1,16 @@
 # docker run --name gh-file-server -p 9008:80 -v ${pwd}\nginx.conf:/etc/nginx/nginx.conf:ro -v ${pwd}\files:/etc/nginx/html/files -d nginx
-. ("${PSScriptRoot}\.\lib.ps1");
+. (Join-Path -Path $PSScriptRoot -ChildPath "lib.ps1");
 
-sendFile @("./docker-compose.yml") "/opt/linr"
+sendFiles @("docker-compose.yml") "/opt/cmon"
+Write-Output "ddocker-compose.yml send success."
 
 # $name = "wex-files";
 
 # $docker_container_id = (Get-Content -Path "files" -Encoding UTF8 | Out-Null);
 
-# Write-Output "delete docker ${name}."
-# $command = "docker stop ${name}; docker rm ${name}"
-# execCommand($command)
+# Write-Output "delete docker ${name}.";
+# $command = "docker stop ${name}; docker rm ${name}";
+# execCommand($command);
 
 # sendFiles @("..\..\script\disk.sh", "..\..\script\cpustat.sh", "..\..\script\loadavg.sh") "/tmp/files/script";
 # sendFiles @("nginx.conf") "/tmp/files";
@@ -27,62 +28,38 @@ sendFile @("./docker-compose.yml") "/opt/linr"
 
 # Invoke-WebRequest -Uri "http://10.65.193.51:8500/v1/agent/service/register" -Method Put -Body $content
 
-# function files() {
-#   sendFiles @(".\docker-compose.yml")  "/tmp/linr"
-#   sendFiles @("..\script") "/tmp/linr/files"
-#   $command = "cd /tmp/linr; docker-compose up -d files"
+$cmon_home = "/opt/cmon"
 
-#   execCommand $command;
-# }
+$upParam = "-d --force-recreate"
+
+function files() {
+    # ../script/deploy.ps1
+    # $command = "cd ${cmon_home}; docker-compose up -d files"
+    docker-compose up $upParam files 
+    # execCommand $command;
+}
 
 function agent-sql() {
-  $localDir = pwd
-
-  cd ..\agent-sql
-  tsc
-  webpack
-
-  cd $localDir
-
-  sendFiles @(".\docker-compose.yml")  "/tmp/linr"
-  # sendFiles @(".\agent-sql\instantclient-basic-linux.x64-12.2.0.1.0.zip")  "/tmp/linr/agent-sql"
-  sendFiles @("..\agent-sql\Dockerfile", "..\agent-sql\dist\entrypoint.js")  "/tmp/linr/agent-sql"
-
-  $command = "cd /tmp/linr; docker-compose build agent-sql"
-
-  execCommand $command;
+    docker-compose up -d --force-recreate agent-sql
 }
 
-function consul() {
-  sendFiles @(".\docker-compose.yml")  "/tmp/linr"
+# function consul() {
+#     $command = "cd /tmp/cmon; docker-compose up -d consul; docker-compose ps"
+#     execCommand $command;
+# }
 
-  $command = "cd /tmp/linr; docker-compose up -d consul; docker-compose ps"
-
-  execCommand $command;
+function influxdb() {
+    $command = "cd ${cmon_home}; docker-compose up -d influxdb; docker-compose ps"
+    execCommand $command;
 }
 
-function influxdb(){
-  sendFiles @(".\docker-compose.yml")  "/tmp/linr"
-  $command = "cd /tmp/linr; docker-compose up -d influxdb; docker-compose ps"
-  execCommand $command;
-}
-
-function chronograf(){
-  sendFiles @(".\docker-compose.yml")  "/tmp/linr"
-  $command = "cd /tmp/linr; docker-compose up -d chronograf; docker-compose ps"
-  execCommand $command;
-}
-
-function test(){
-  sendFiles @(".\docker-compose.yml")  "/tmp/linr"
-  $command = "cd /tmp/linr; docker-compose up -d test; docker-compose ps"
-  execCommand $command;
+function chronograf() {
+    $command = "cd ${cmon_home}; docker-compose up -d chronograf; docker-compose ps"
+    execCommand $command;
 }
 
 # files
 # influxdb
 # chronograf
-# chronograf
 # consul
-# agent-sql
-# sendFiles @(".\docker-compose.yml")  "/tmp/linr"
+agent-sql

@@ -1,0 +1,24 @@
+{
+  "name": "tasks",
+  "version": "1.0.0",
+  "main": "./dist/Task.js",
+  "types": "./dist/Task.d.js",
+  "scripts": {
+    "test": "tsc && npm run mocha",
+    "mocha": "mocha --require ts-node/register --watch-extensions ts \"test/test.ts\""
+  },
+  "dependencies": {
+    "cmon-task-lib": "^1.6.1",
+    "influx": "^5.0.7",
+    "oracledb": "^2.1.2"
+  },
+  "devDependencies": {
+    "@types/mysql": "^2.15.3",
+    "@types/node": "^9.4.7",
+    "@types/oracledb": "^1.11.34",
+    "awesome-typescript-loader": "^4.0.1",
+    "node-gyp": "^3.6.2",
+    "typescript": "^2.7.2",
+    "webpack-node-externals": "^1.6.0"
+  }
+}

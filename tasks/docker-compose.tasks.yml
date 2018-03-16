@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  orclsession:
+    image: cmon/task/orclsession
+    container_name: cmon-task-orclsession
+    networks:
+      - cmon
+  cpustat:
+    image: cmon/task/cpustat
+    container_name: cmon-task-cpustat
+    networks:
+      - cmon
+  loadavg:
+    image: cmon/task/loadavg
+    container_name: cmon-task-loadavg
+    networks:
+      - cmon
+  disk:
+    image: cmon/task/disk
+    container_name: cmon-task-disk
+    networks:
+      - cmon

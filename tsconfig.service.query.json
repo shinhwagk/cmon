@@ -1,0 +1,10 @@
+{
+    "extends": "./tsconfig",
+    "compilerOptions": {
+        "outDir": "lib",
+        "sourceMap": false
+    },
+    "files": [
+        "services/sql/src/main.ts"
+    ]
+}

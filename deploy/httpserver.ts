@@ -16,6 +16,7 @@ interface IQueryFunctionForRequestListener {
 
 const queryRequestListener: IQueryFunctionForRequestListener = (f) => (q, p) => {
   const b: Buffer[] = [];
+
   q.on('data', (chunk: Buffer) => b.push(chunk));
   q.on('end', () => {
     const dbname: string = <string>(<string>url.parse(<string>q.url).path).split("/").pop()

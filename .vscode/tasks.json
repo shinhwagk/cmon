@@ -1,0 +1,42 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "windows": {
+    "options": {
+      "shell": {
+        "executable": "pwsh.exe",
+        "args": [
+          "-Command"
+        ]
+      }
+    },
+  },
+  "linux": {
+    "options": {
+      "shell": {
+        "executable": "pwsh",
+        "args": [
+          "-Command"
+        ]
+      }
+    }
+  },
+  "osx": {
+    "options": {
+      "shell": {
+        "executable": "pwsh",
+        "args": [
+          "-Command"
+        ]
+      }
+    }
+  },
+  "tasks": [
+    {
+      "label": "tsc",
+      "type": "shell",
+      "command": "tsc -w"
+    }
+  ]
+}

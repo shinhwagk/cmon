@@ -1,0 +1,12 @@
+{
+    "yali2": {
+        "connectString": "10.65.193.25:1521/orayali2",
+        "user": "system",
+        "password": "oracle"
+    },
+    "yali3": {
+        "connectString": "10.65.193.26:1521/orayali3",
+        "user": "system",
+        "password": "oracle"
+    }
+}

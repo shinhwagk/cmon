@@ -8,6 +8,7 @@ import (
 	"os"
 	"os/exec"
 	"strings"
+	 "path"
 )
 
 func main() {
@@ -22,14 +23,19 @@ type ExecuteResult struct {
 	Res string
 }
 
+func genScriptFilePath(name string) string{
+	return path.Join("/","tmp",name,name+".sh")
+}
+
 func downFile(name string) (err error) {
-	out, err := os.Create("/tmp/" + name + ".sh")
+	scriptPath := genScriptFilePath(name)
+	out, err := os.Create(scriptPath)
 	if err != nil {
 		return err
 	}
 	defer out.Close()
 
-	resp, err := http.Get("http://files.linr.org:9501/files/" + name + ".sh")
+	resp, err := http.Get("http://files.cmon.org:9501/files/os-script/" + name + ".sh")
 	if err != nil {
 		return err
 	}
@@ -48,15 +54,15 @@ func executeCommand(name string) string {
 	derr := downFile(name)
 	if derr != nil {
 		fmt.Println(derr)
-		return ""
+		return "[]"
 	}
-	cmd := exec.Command("/bin/bash", "/tmp/"+name+".sh")
+	cmd := exec.Command("/bin/bash", genScriptFilePath(name))
 
 	out, err := cmd.Output()
 
 	if err != nil {
 		fmt.Println(err)
-		return ""
+		return "[]"
 	}
 	return string(out)
 }
