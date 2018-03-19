@@ -1,0 +1,13 @@
+{
+  "name": "tasks",
+  "version": "1.0.0",
+  "main": "./dist/Task.js",
+  "types": "./dist/Task.d.js",
+  "scripts": {
+    "test": "tsc && npm run mocha",
+    "mocha": "mocha --require ts-node/register --watch-extensions ts \"test/test.ts\""
+  },
+  "dependencies": {
+    "cmon-task-lib": "^1.2.3"
+  }
+}
