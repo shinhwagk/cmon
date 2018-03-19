@@ -10,6 +10,15 @@ services:
       cmon:
         aliases:
           - query.oracle.service.cmon.org
+  database:
+    image: mysql:5.7.21
+    container_nam: cmon-service-database
+    ports:
+      - 3306:3306
+    networks:
+      cmon:
+        aliases:
+          - database.service.cmon.org      
   files:
     image: nginx
     container_name: cmon-files

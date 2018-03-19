@@ -32,7 +32,7 @@ function makeValues(p: IOSEndPoint, d: Metric) {
 }
 
 const cs =
-  steps.CronStep<IOSEndPoint, Metric>("cron", 15000, OSEndPoints, command.scriptServiceClient("cpustat"));
+  steps.CronStep<IOSEndPoint, Metric>("cron", 15000, OSEndPoints, command.scriptServiceClient("cpustat"), false);
 const print =
   steps.PrintStep("print", (p: IOSEndPoint, d: Metric) => console.info(p, (new Date()).getMilliseconds(), d));
 const influx = steps.InfluxStep<IOSEndPoint, Metric>("influx", "mydb", "cpustat", makeTags, makeValues);
