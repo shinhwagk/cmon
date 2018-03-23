@@ -21,7 +21,7 @@ services:
           - database.service.cmon.org      
   files:
     image: nginx
-    container_name: cmon-files
+    container_name: cmon-services-files
     volumes:
       - /opt/cmon/files:/etc/nginx/html/files
       - /opt/cmon/files/nginx.conf:/etc/nginx/nginx.conf:ro
