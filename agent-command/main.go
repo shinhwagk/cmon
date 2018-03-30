@@ -8,7 +8,7 @@ import (
 	"os"
 	"os/exec"
 	"strings"
-	 "path"
+	"path"
 )
 
 func main() {
@@ -35,7 +35,7 @@ func downFile(name string) (err error) {
 	}
 	defer out.Close()
 
-	resp, err := http.Get("http://files.cmon.org:9501/files/os-script/" + name + ".sh")
+	resp, err := http.Get("http://files.cmon.org:9501/files/script/" + name + ".sh")
 	if err != nil {
 		return err
 	}
